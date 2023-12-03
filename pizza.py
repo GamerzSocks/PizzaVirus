@@ -39,3 +39,6 @@ DeliveryAddress = input()
 print("Ok, Delivering to " + DeliveryAddress + " !")
 time.sleep(10)
 print("We have recieved your order. We'll begin your live tracking ASAP.")
+time.sleep(1)
+print("Connecting to Store...)
+
