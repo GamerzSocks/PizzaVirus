@@ -3,6 +3,9 @@
 #Global imports
 import time
 from datetime import datetime, timedelta
+import random
+import webbrowser
+import os
 
 print("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣤⣤⣄⣄⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀")
 print("⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡴⠊⠉⠉⠉⠉⠉⣩⡷⠋⠉⠹⡛⢽⠢⣀⣀⡀⠀")
@@ -66,8 +69,19 @@ print("Beginning delivery to " + DeliveryAddress + ".")
 # ETA Calculations
 CT = datetime.now()
 ETA = CT + timedelta(minutes=5)
-STRETA = ETA.strftime("%H:%M:%S")
+STRETA = ETA.strftime("%H:%M")
 
 print("Estimated Arrival Time: " + STRETA)
+time.sleep(300)
+
+punishment_gen = (random.randint(0,1))
+
+
+if punishment_gen == 1:
+    url = "https://www.youtube.com/watch?v=48rz8udZBmQ"
+    webbrowser.open(url)
+elif punishment_gen == 0:
+    print("Unfortunately, we have had to cancel your order for one " + pizza_selection + " pizza.")
+    print("Sorry for the incovenience, Domino's Team.")
 
 
