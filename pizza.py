@@ -6,6 +6,8 @@ from datetime import datetime, timedelta
 import random
 import webbrowser
 import os
+import subprocess
+
 
 print("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣤⣤⣄⣄⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀")
 print("⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡴⠊⠉⠉⠉⠉⠉⣩⡷⠋⠉⠹⡛⢽⠢⣀⣀⡀⠀")
@@ -74,14 +76,29 @@ STRETA = ETA.strftime("%H:%M")
 print("Estimated Arrival Time: " + STRETA)
 time.sleep(300)
 
-punishment_gen = (random.randint(0,1))
+punishment_gen = (random.randint(0,2))
 
 
 if punishment_gen == 1:
     url = "https://www.youtube.com/watch?v=48rz8udZBmQ"
     webbrowser.open(url)
-elif punishment_gen == 0:
+    print("imagine not knowing that this was a virus lol.")
+
+if punishment_gen == 0:
     print("Unfortunately, we have had to cancel your order for one " + pizza_selection + " pizza.")
     print("Sorry for the incovenience, Domino's Team.")
 
+
+if punishment_gen == 2:
+ for _ in range(10):
+    punishment_gen = 2  # Replace this with your actual condition or variable
+
+    if punishment_gen == 2:
+        command_to_run = 'explorer'
+
+        try:
+            subprocess.run(command_to_run, shell=True, check=True)
+        except subprocess.CalledProcessError as e:
+            filler = "filler"
+ print("Have fun closing them file explorers! ;)")
 
