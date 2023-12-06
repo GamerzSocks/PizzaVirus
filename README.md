@@ -9,3 +9,5 @@ However, this is a Computer Virus, it may not be dangerous, but it can be very a
 # Disclaimer
 This is not really a "harmful" virus, at worst, in the future, i may implement a BSOD. However, make sure you have consent if using it on others.
 This is made for fun, not to wreck computers.
+
+is this working?
