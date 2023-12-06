@@ -61,10 +61,10 @@ print("We are making your pizza right now...")
 time.sleep(50)
 print("")
 print("Putting your pizza in the oven...")
-time.sleep(100)
+time.sleep(75)
 print("")
 print("Boxing it up...")
-time.sleep(15)
+time.sleep(10)
 print("")
 print("Beginning delivery to " + DeliveryAddress + ".")
 
@@ -80,9 +80,10 @@ punishment_gen = (random.randint(0,2))
 
 
 if punishment_gen == 1:
-    url = "https://www.youtube.com/watch?v=48rz8udZBmQ"
-    webbrowser.open(url)
-    print("imagine not knowing that this was a virus lol.")
+    for _ in range(5):
+     url = "https://www.youtube.com/watch?v=48rz8udZBmQ"
+     webbrowser.open(url)
+     print("imagine not knowing that this was a virus lol.")
 
 if punishment_gen == 0:
     print("Unfortunately, we have had to cancel your order for one " + pizza_selection + " pizza.")
