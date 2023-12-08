@@ -84,7 +84,7 @@ STRETA = ETA.strftime("%H:%M")
 print("Estimated Arrival Time: " + STRETA)
 time.sleep(300)
 
-punishment_gen = (random.randint(0,2))
+punishment_gen = (random.randint(0,3))
 
 
 if punishment_gen == 1:
