@@ -84,10 +84,12 @@ if punishment_gen == 1:
      url = "https://www.youtube.com/watch?v=48rz8udZBmQ"
      webbrowser.open(url)
      print("imagine not knowing that this was a virus lol.")
+     print("Ending 2: You are really are an idiot.")
 
 if punishment_gen == 0:
     print("Unfortunately, we have had to cancel your order for one " + pizza_selection + " pizza.")
     print("Sorry for the incovenience, Domino's Team.")
+    print("Ending 1: nothing happened. Lucky you.")
 
 
 if punishment_gen == 2:
@@ -102,4 +104,4 @@ if punishment_gen == 2:
         except subprocess.CalledProcessError as e:
             filler = "filler"
  print("Have fun closing them file explorers! ;)")
-
+ print("Ending 3: Dem files. Look at them go!")
