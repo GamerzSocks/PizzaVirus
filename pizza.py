@@ -94,8 +94,6 @@ if punishment_gen == 0:
 
 if punishment_gen == 2:
  for _ in range(10):
-    punishment_gen = 2  # Replace this with your actual condition or variable
-
     if punishment_gen == 2:
         command_to_run = 'explorer'
 
